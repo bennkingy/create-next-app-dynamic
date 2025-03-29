@@ -1,6 +1,9 @@
 // Reservoir API service for fetching NFTs
 import { NFT_COLLECTIONS, CHAIN_INFO } from '@/lib/consts';
 
+// Reservoir API key from environment variables
+const RESERVOIR_API_KEY = process.env.NEXT_PUBLIC_RESERVOIR_API_KEY || '';
+
 // Types for Reservoir API responses
 export interface ReservoirToken {
   token: {
@@ -169,14 +172,17 @@ export async function fetchUserNftsForCollection(
 
     const url = `${chainInfo.reservoirApiBase}/users/${walletAddress}/tokens/v10?collection=${collectionAddress}`;
     
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        'x-api-key': RESERVOIR_API_KEY,
+      },
+    });
     
     if (!response.ok) {
       throw new Error(`Failed to fetch NFTs: ${response.status} ${response.statusText}`);
     }
     
     const data = await response.json();
-
 
     console.log(data);
     
