@@ -2,36 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.dynamic-shadow-dom {
-	--dynamic-connect-button-background: #000;
-	--dynamic-connect-button-color: #000;
-	--dynamic-connect-button-text: #fff;
-
-	--dynamic-connect-button-color-hover: #fff;
-	--dynamic-connect-button-border-hover: 2px solid #000;
-	--dynamic-connect-button-shadow-hover: 0px 3px 0px #000000;
-}
-
-:root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
-	/* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  /* background: var(--background); */
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom */
+.clip-path-home-tile {
+  -webkit-clip-path: polygon(0 0, 0 100%, 100% 80%, 100% 0);
+  clip-path: polygon(0 0, 0 100%, 100% 80%, 100% 0);
+}
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
