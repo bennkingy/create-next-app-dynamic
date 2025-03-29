@@ -45,11 +45,20 @@ export default function Stables() {
 
         for (const collection of Object.values(nfts)) {
           for (const token of collection.tokens) {
+            // First try to use the token's own ask price if available
             if (token.token.floorAsk?.price?.amount?.decimal) {
               totalValue += token.token.floorAsk.price.amount.decimal;
               // Set currency from the first token that has a price
               if (currency === 'ETH' && token.token.floorAsk.price.currency?.symbol) {
                 currency = token.token.floorAsk.price.currency.symbol;
+              }
+            } 
+            // If token doesn't have its own price, use collection floor price
+            else if (token.token.collection?.floorAsk?.price?.amount?.decimal) {
+              totalValue += token.token.collection.floorAsk.price.amount.decimal;
+              // Set currency from collection floor price
+              if (currency === 'ETH' && token.token.collection.floorAsk.price.currency?.symbol) {
+                currency = token.token.collection.floorAsk.price.currency.symbol;
               }
             }
           }
