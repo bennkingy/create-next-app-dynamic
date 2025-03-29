@@ -14,7 +14,7 @@ interface ButtonProps {
   rel?: string;
   disabled?: boolean;
   prevent?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 const Button: React.FC<ButtonProps> = ({
