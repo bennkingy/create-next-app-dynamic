@@ -24,7 +24,7 @@ const formSchema = z.object({
   }),
   wallet: z
     .string()
-    .regex(/^0x[a-fA-F0-9]{40}$/, "Please enter a valid Ethereum wallet address."),
+    .regex(/^0x[a-fA-F0-9]{40}$/, "Please enter a valid Berachain wallet address."),
   referralCode: z.string().optional(),
 })
 
@@ -102,10 +102,10 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel className="text-white">Wallet Address</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your Ethereum wallet address" {...field} className="bg-white" />
+                <Input placeholder="Enter your Berachain wallet address" {...field} className="bg-white" />
               </FormControl>
               <FormDescription className="text-white">
-                Enter a valid Ethereum wallet address (starting with 0x).
+                Enter a valid Berachain wallet address (starting with 0x).
               </FormDescription>
               <FormMessage />
             </FormItem>
