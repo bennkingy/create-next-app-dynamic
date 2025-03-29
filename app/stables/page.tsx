@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-// import { useActiveAccount } from "thirdweb/react";
-import { fetchAllUserNfts, ReservoirToken, ReservoirTokensResponse } from '@/lib/api/reservoir';
+import { fetchAllUserNfts, type ReservoirToken, type ReservoirTokensResponse } from '@/lib/api/reservoir';
 import { NFT_COLLECTIONS, CHAIN_INFO } from '@/lib/consts';
+import { useDynamicContext } from '@/lib/dynamic';
 import ReservoirNFTCard from '@/components/ReservoirNFTCard';
 
 export default function Stables() {
-  // const account = '0x0000000000000000000000000000000000000000'; //useActiveAccount();
+  const { primaryWallet } = useDynamicContext();
   const [userNFTs, setUserNFTs] = useState<Record<string, ReservoirTokensResponse>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [activeCollection, setActiveCollection] = useState<string | null>(null);
@@ -16,8 +16,8 @@ export default function Stables() {
     currency: string;
   }>({ total: 0, currency: 'ETH' });
 
-  // const address = account?.address;
-  const address = '0x0000000000000000000000000000000000000000';
+  const address = primaryWallet?.address || null;
+  
   // Fetch NFTs when the user connects their wallet
   useEffect(() => {
     async function fetchNFTs() {
@@ -41,8 +41,8 @@ export default function Stables() {
         let totalValue = 0;
         let currency = 'ETH';
 
-        Object.values(nfts).forEach(collection => {
-          collection.tokens.forEach(token => {
+        for (const collection of Object.values(nfts)) {
+          for (const token of collection.tokens) {
             if (token.token.floorAsk?.price?.amount?.decimal) {
               totalValue += token.token.floorAsk.price.amount.decimal;
               // Set currency from the first token that has a price
@@ -50,8 +50,8 @@ export default function Stables() {
                 currency = token.token.floorAsk.price.currency.symbol;
               }
             }
-          });
-        });
+          }
+        }
 
         setPortfolioValue({
           total: totalValue,
@@ -115,6 +115,7 @@ export default function Stables() {
                 return (
                   <button
                     key={collectionKey}
+                    type="button"
                     onClick={() => setActiveCollection(collectionKey)}
                     className={`
                       py-4 px-1 border-b-2 font-medium text-sm

@@ -46,6 +46,11 @@ export default function RootLayout({
 					settings={{
 						environmentId: process.env.DYNAMIC_PROJECT_ID || '',
 						walletConnectors: [EthereumWalletConnectors],
+						walletConnectorSettings: {
+							email: {
+								requireVerification: false
+							}
+						}
 					}}
 				>
           <div className="bg-brand-blue text-white p-2 text-center font-openSans text-[14px] font-light block md:hidden">

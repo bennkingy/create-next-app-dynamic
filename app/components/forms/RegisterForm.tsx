@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useDynamicContext } from "../../../lib/dynamic"
 
 import {
   Form,
@@ -33,6 +34,7 @@ type FormValues = z.infer<typeof formSchema>;
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { primaryWallet } = useDynamicContext();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -42,6 +44,13 @@ export function RegisterForm() {
       referralCode: "",
     },
   });
+
+  // Effect to autofill wallet address when a wallet is connected
+  useEffect(() => {
+    if (primaryWallet?.address) {
+      form.setValue('wallet', primaryWallet.address);
+    }
+  }, [primaryWallet, form]);
 
   async function onSubmit(values: FormValues) {
     console.log("Form Submitted:", values);

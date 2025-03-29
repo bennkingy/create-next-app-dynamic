@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState, useEffect } from "react";
+import { useDynamicContext } from "../../../lib/dynamic";
 import {
   Form,
   FormControl,
@@ -14,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Button from "../Button";
-import { useState } from "react";
+
 const formSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -25,6 +27,8 @@ const formSchema = z.object({
 });
 
 export function CreateCode() {
+  const { primaryWallet } = useDynamicContext();
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,6 +36,13 @@ export function CreateCode() {
       wallet: "",
     },
   });
+
+  // Effect to autofill wallet address when a wallet is connected
+  useEffect(() => {
+    if (primaryWallet?.address) {
+      form.setValue('wallet', primaryWallet.address);
+    }
+  }, [primaryWallet, form]);
 
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [postStatus, setPostStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
