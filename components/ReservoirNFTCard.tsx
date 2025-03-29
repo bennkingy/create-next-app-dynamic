@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 import Image from 'next/image';
-import { ReservoirToken } from '@/lib/api/reservoir';
+import type { ReservoirToken } from '@/lib/api/reservoir';
 
 interface NFTCardProps {
   nft: ReservoirToken;

@@ -24,11 +24,6 @@ export const open_Sans = Open_Sans({
   variable: '--font-open-sans'
 })
 
-// Create the client
-// export const client = createThirdwebClient({
-//   clientId: "849ab365b092f42ef0bf7773111cf5ae",
-// });
-
 export const metadata: Metadata = {
   title: "Bera Horses - Step into the world of Alpheria",
   description: "Step into the world of Alpheria in this expansive horse racing role playing game on Berachain.",
@@ -46,20 +41,15 @@ export default function RootLayout({
 					settings={{
 						environmentId: process.env.DYNAMIC_PROJECT_ID || '',
 						walletConnectors: [EthereumWalletConnectors],
-						walletConnectorSettings: {
-							email: {
-								requireVerification: false
-							}
-						}
 					}}
 				>
           <div className="bg-brand-blue text-white p-2 text-center font-openSans text-[14px] font-light block md:hidden">
             <strong className="uppercase font-bold"> Alpha demo live</strong> - Earn $BERA
-            <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"/>
           </div>
           <div className="bg-brand-blue text-white p-2 text-center font-openSans text-[14px] font-light hidden md:block">
             <strong className="uppercase font-bold">Alpha demo live</strong> - Download for PC and earn $BERA
-            <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"/>
           </div>
           <MobileMenuProvider>
             <FraRecipient />

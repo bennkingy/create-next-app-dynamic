@@ -115,7 +115,8 @@ export function CreateCode() {
         <FormField
           control={form.control}
           name="username"
-          render={({ field }) => (
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel className="">Username</FormLabel>
               <FormControl>
@@ -132,7 +133,8 @@ export function CreateCode() {
         <FormField
           control={form.control}
           name="wallet"
-          render={({ field }) => (
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel className="text-[#2C3034]">Wallet Address</FormLabel>
               <FormControl>
