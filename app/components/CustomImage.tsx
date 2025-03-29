@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import PropTypes from 'prop-types';
 
 interface CustomImageProps {
   src: string;
@@ -47,18 +46,6 @@ const CustomImage: React.FC<CustomImageProps> = ({
       />
     </div>
   );
-};
-
-CustomImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  backgroundSize: PropTypes.oneOf(['cover', 'contain', 'auto']),
-  layout: PropTypes.oneOf(['fixed', 'intrinsic', 'responsive', 'fill']),
-  objectFit: PropTypes.oneOf(['cover', 'contain', 'fill', 'none', 'scale-down']),
-  className: PropTypes.string,
-  style: PropTypes.object,
 };
 
 export default CustomImage;

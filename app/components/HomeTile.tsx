@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Image from "next/image";
 import TextHeading from "../components/Text";
 
@@ -28,14 +27,6 @@ const HomeTile: React.FC<HomeTileProps> = ({
       </div>
     </div>
   );
-};
-
-HomeTile.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export default HomeTile;

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import PropTypes from 'prop-types';
 
 interface ButtonProps {
   href?: string;
@@ -56,16 +55,6 @@ const Button: React.FC<ButtonProps> = ({
       {icon && <span className="ml-4">{icon}</span>}
     </button>
   );
-};
-
-Button.propTypes = {
-  href: PropTypes.string,
-  type: PropTypes.oneOf(['primary', 'secondary']),
-  label: PropTypes.string.isRequired,
-  icon: PropTypes.element,
-  className: PropTypes.string,
-  prevent: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 export default Button;

@@ -1,14 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { usePathname } from "next/navigation";
 
 interface MenuItem {
   label: string;
   href: string;
   divider?: boolean;
-  newTab?: boolean; // Add new property for opening in new tab
+  newTab?: boolean;
 }
 
 interface MenuProps {
@@ -70,20 +69,6 @@ const Menu: React.FC<MenuProps> = ({
       ))}
     </nav>
   );
-};
-
-Menu.propTypes = {
-  menuItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-      divider: PropTypes.bool,
-      newTab: PropTypes.bool, // Add PropType validation for newTab
-    }).isRequired
-  ).isRequired,
-  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
-  className: PropTypes.string,
-  center: PropTypes.bool,
 };
 
 export default Menu;
