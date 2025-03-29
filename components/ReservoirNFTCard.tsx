@@ -10,14 +10,14 @@ const ReservoirNFTCard: React.FC<NFTCardProps> = ({ nft }) => {
   const { token } = nft;
   
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
       <div className="relative h-64 w-full bg-gray-100">
         {token.image ? (
           <Image 
             src={token.image}
             alt={token.name || `Token #${token.tokenId}`}
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
