@@ -28,7 +28,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, toggleMenu }) =>
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          className="fixed inset-0 bg-brand-blue z-50 flex flex-col"
+          className="fixed inset-0 bg-brand-blue z-[1000] flex flex-col"
           initial={{ opacity: 0, y: "-100%" }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: "-100%" }}
