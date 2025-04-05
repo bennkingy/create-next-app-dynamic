@@ -62,6 +62,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, toggleMenu }) =>
               visible: {
                 opacity: 1,
                 transition: {
+                  delayChildren: 0.3,
                   staggerChildren: 0.1
                 }
               }
