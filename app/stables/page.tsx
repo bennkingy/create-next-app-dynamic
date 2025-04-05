@@ -200,7 +200,7 @@ export default function Stables() {
         ) : null}
       </div>
       
-      <Divider color="green" className="mt-12 -mb-1" />
+      <Divider color="black" className="mt-12 -mb-1" />
     </div>
   );
 } 

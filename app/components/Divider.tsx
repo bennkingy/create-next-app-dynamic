@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface DividerProps {
-  color: "orange" | "blue" | "white" | "green";
+  color: "orange" | "blue" | "white" | "green" | "black";
   className?: string;
 }
 
