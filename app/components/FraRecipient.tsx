@@ -33,7 +33,7 @@ export const FraRecipient = () => {
 
   return (
     <div 
-      className="fixed right-0 top-1/2 z-30"
+      className="fixed right-0 top-1/2 z-50"
       style={{ 
         opacity: visible ? 1 : 0,
         transform: `translateY(-50%) ${visible ? 'translateX(0)' : 'translateX(100%)'}`,

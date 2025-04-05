@@ -31,7 +31,7 @@ export default function Register() {
 
       {/* Top Section */}
       <div className="relative bg-[#DAE8F0] text-gray-800 py-24 z-2">
-        <div className="relative text-gray-800 pb-24 px-6 z-50">
+        <div className="relative text-gray-800 pb-24 px-6 z-10">
           <div className="relative container text-center">
             <TextHeading text="Get in the race and register for white list now!" type="heading" style="text-heading-2" className="text-center" />
             <p className="mt-4 text-lg max-w-xl mx-auto">

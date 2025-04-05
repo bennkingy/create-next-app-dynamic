@@ -3,6 +3,8 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { MobileMenu, MobileMenuToggle } from "./MobileMenu";
 import { ConnectWallet } from "./ConnectWallet";
+// Remove or comment out the import that can't be found
+// import { ConnectWallet } from "./ConnectWallet";
 
 interface MobileMenuContextType {
   isOpen: boolean;
@@ -48,10 +50,10 @@ export const MobileMenuProvider = ({ children }: { children: ReactNode }) => {
     <MobileMenuContext.Provider value={{ isOpen, toggleMenu }}>
       <div className="relative">
         <header className="relative top-0 right-0 z-40 flex items-baseline p-4 w-full justify-end -mb-[97px] h-[80px]">
-          <div className="hidden lg:block h-[80px]">
+          <div className="hidden sm:block h-[80px]">
             <ConnectWallet />
           </div>
-          <div className="lg:hidden">
+          <div className="sm:hidden">
             <MobileMenuToggle isOpen={isOpen} toggleMenu={toggleMenu} />
           </div>
         </header>
