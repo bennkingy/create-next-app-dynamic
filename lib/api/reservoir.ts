@@ -156,13 +156,19 @@ export interface ReservoirTokensResponse {
  * @param collectionAddress The collection contract address
  * @param chainId The chain ID where the collection exists
  * @param collectionKey The key to identify which collection this is
+ * @param limit Optional limit of tokens per request (default is 100)
+ * @param continuationToken Optional token for pagination
+ * @param onProgress Optional callback for reporting pagination progress
  * @returns A promise that resolves to the user's NFTs for the collection
  */
 export async function fetchUserNftsForCollection(
   walletAddress: string,
   collectionAddress: string,
   chainId: number,
-  collectionKey: string
+  collectionKey: string,
+  limit = 100,
+  continuationToken?: string,
+  onProgress?: (collection: string, count: number) => void
 ): Promise<ReservoirTokensResponse> {
   try {
     const chainInfo = CHAIN_INFO[chainId as keyof typeof CHAIN_INFO];
@@ -170,7 +176,13 @@ export async function fetchUserNftsForCollection(
       throw new Error(`Chain ID ${chainId} not supported`);
     }
 
-    const url = `${chainInfo.reservoirApiBase}/users/${walletAddress}/tokens/v10?collection=${collectionAddress}`;
+    // Build URL with parameters
+    let url = `${chainInfo.reservoirApiBase}/users/${walletAddress}/tokens/v10?collection=${collectionAddress}&limit=${limit}`;
+    
+    // Add continuation token if provided
+    if (continuationToken) {
+      url += `&continuation=${continuationToken}`;
+    }
     
     const response = await fetch(url, {
       headers: {
@@ -183,8 +195,6 @@ export async function fetchUserNftsForCollection(
     }
     
     const data = await response.json();
-
-    console.log(data);
     
     // Add the collection key to each token for identification
     if (data.tokens && Array.isArray(data.tokens)) {
@@ -192,6 +202,31 @@ export async function fetchUserNftsForCollection(
         ...token,
         collectionKey
       }));
+    }
+
+    // Report progress if callback provided
+    if (onProgress && data.tokens) {
+      onProgress(collectionKey, data.tokens.length);
+    }
+
+    // If there's a continuation token, fetch the next batch recursively
+    if (data.continuation) {
+      console.log(`Fetching next batch with continuation token: ${data.continuation}`);
+      const nextBatch = await fetchUserNftsForCollection(
+        walletAddress,
+        collectionAddress,
+        chainId,
+        collectionKey,
+        limit,
+        data.continuation,
+        onProgress
+      );
+      
+      // Combine the current tokens with the next batch
+      return {
+        tokens: [...data.tokens, ...nextBatch.tokens],
+        continuation: nextBatch.continuation // Pass along the final continuation token
+      };
     }
     
     return data;
@@ -204,11 +239,19 @@ export async function fetchUserNftsForCollection(
 
 /**
  * Fetches all of a user's NFTs from all supported collections across all chains
+ * Using pagination with continuation tokens to ensure ALL tokens are retrieved,
+ * not just the first page of results.
  * 
  * @param walletAddress The user's wallet address
+ * @param tokensPerPage Optional number of tokens to fetch per API request (default 100)
+ * @param onProgress Optional callback for reporting pagination progress
  * @returns A promise that resolves to all of the user's NFTs grouped by collection
  */
-export async function fetchAllUserNfts(walletAddress: string): Promise<Record<string, ReservoirTokensResponse>> {
+export async function fetchAllUserNfts(
+  walletAddress: string,
+  tokensPerPage = 100,
+  onProgress?: (collection: string, count: number) => void
+): Promise<Record<string, ReservoirTokensResponse>> {
   const results: Record<string, ReservoirTokensResponse> = {};
   
   await Promise.all(
@@ -217,7 +260,10 @@ export async function fetchAllUserNfts(walletAddress: string): Promise<Record<st
         walletAddress, 
         collection.address, 
         collection.chainId,
-        key
+        key,
+        tokensPerPage,
+        undefined,
+        onProgress
       );
       results[key] = response;
     })

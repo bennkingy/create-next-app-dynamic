@@ -12,6 +12,7 @@ export default function Stables() {
   const { primaryWallet } = useDynamicContext();
   const [userNFTs, setUserNFTs] = useState<Record<string, ReservoirTokensResponse>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('Loading your NFTs...');
   const [activeCollection, setActiveCollection] = useState<string | null>(null);
   const [portfolioValue, setPortfolioValue] = useState<{
     total: number;
@@ -26,8 +27,20 @@ export default function Stables() {
       if (!address) return;
 
       setIsLoading(true);
+      setLoadingMessage('Loading your NFTs (this may take a moment if you have many NFTs)...');
+      
+      // Track the total tokens loaded
+      let totalTokensLoaded = 0;
+      
       try {
-        const nfts = await fetchAllUserNfts(address);
+        const nfts = await fetchAllUserNfts(
+          address, 
+          100, // 100 tokens per page
+          (collection, count) => {
+            totalTokensLoaded += count;
+            setLoadingMessage(`Loading NFTs... Found ${totalTokensLoaded} tokens so far${count > 20 ? ' (paginating through results)' : ''}`);
+          }
+        );
         setUserNFTs(nfts);
 
         // Set the first collection that has tokens as active
@@ -70,6 +83,7 @@ export default function Stables() {
         });
       } catch (error) {
         console.error('Error fetching NFTs:', error);
+        setLoadingMessage('Error loading NFTs. Please try again.');
       } finally {
         setIsLoading(false);
       }
@@ -117,7 +131,7 @@ export default function Stables() {
             </div>
           ) : isLoading ? (
             <div className="text-center py-12">
-              <p className="text-xl font-openSans">Loading your NFTs...</p>
+              <p className="text-xl font-openSans">{loadingMessage}</p>
             </div>
           ) : totalNFTs === 0 ? (
             <div className="text-center py-12">
