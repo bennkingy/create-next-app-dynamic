@@ -23,7 +23,7 @@ const HomeTile: React.FC<HomeTileProps> = ({
       </div>
       <div className='p-8 pb-14'>
         <TextHeading className="text-brand-orange mb-4" type="heading" style="text-heading-2" text={title} />
-        <p className="mt-2 text-brand-blue font-sans">{description}</p>
+        <p className="mt-2 text-brand-blue  font-Opensans">{description}</p>
       </div>
     </div>
   );

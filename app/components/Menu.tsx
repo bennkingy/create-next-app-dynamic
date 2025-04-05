@@ -49,7 +49,7 @@ const Menu: React.FC<MenuProps> = ({
                 : "hover:text-gray-800 "
                 }`}
             >
-              <span className="font-sans font-bold text-[18px] sm:text-[20px]">
+              <span className=" font-Opensans font-bold text-[18px] sm:text-[20px]">
                 {item.label}
               </span>
             </span>

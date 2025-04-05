@@ -197,9 +197,7 @@ export default function Stables() {
               ))}
             </div>
           </div>
-        ) : (
-          <p className="text-center py-8 text-gray-500 font-openSans">Select a collection to view your NFTs</p>
-        )}
+        ) : null}
       </div>
       
       <Divider color="green" className="mt-12 -mb-1" />

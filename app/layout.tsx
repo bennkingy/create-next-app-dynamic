@@ -64,8 +64,9 @@ export default function RootLayout({
               </div>
               <div className="-mt-4">
                 {/* hidden sm:block */}
-                <Menu menuItems={mainNavigation} orientation="horizontal" center />
+                <Menu menuItems={mainNavigation} orientation="horizontal" center className="hidden sm:flex" />
               </div>
+              <div className="block -mb-5 sm:hidden" />
             </div>
             {children}
             <Footer />

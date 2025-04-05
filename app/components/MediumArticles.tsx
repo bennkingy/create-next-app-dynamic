@@ -79,7 +79,7 @@ export default function MediumArticles() {
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 font-heading text-brand-blue">{article.title}</h3>
               <p className="text-brand-blue mb-4 line-clamp-5 font-body">{article.description}</p>
-              <p className="text-[10px] text-brand-blue font-sans">
+              <p className="text-[10px] text-brand-blue  font-Opensans">
                 {new Date(article.pubDate).toLocaleDateString()}
               </p>
             </div>

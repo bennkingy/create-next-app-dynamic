@@ -12,6 +12,6 @@ export default function TextHeading({
   className = ""
 }: Props) {
   return (
-    <h1 className={`${style} ${type === "heading" ? "font-heading" : "font-sans"} ${className}`}>{text}</h1>
+    <h1 className={`${style} ${type === "heading" ? "font-heading" : " font-Opensans"} ${className}`}>{text}</h1>
   );
 }

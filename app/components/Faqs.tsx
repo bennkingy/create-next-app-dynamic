@@ -7,7 +7,7 @@ import {
 
 export function Faqs() {
   return (
-    <Accordion type="single" collapsible className="w-full text-white font-sans">
+    <Accordion type="single" collapsible className="w-full text-white  font-Opensans">
       <AccordionItem value="item-1">
         <AccordionTrigger>How/when can I mint a Stallion Horse on Berachain?</AccordionTrigger>
         <AccordionContent>

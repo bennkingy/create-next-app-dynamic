@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   onClick,
 }) => {
-  const baseClasses = `flex font-sans !uppercase items-center justify-center px-3 py-3 text-sm font-bold leading-6 capitalize duration-100 transform rounded-sm focus:ring-4 focus:ring-opacity-50 focus:outline-none hover:shadow-lg hover:-translate-y-1 ${className}`;
+  const baseClasses = `flex font-Opensans !uppercase items-center justify-center px-3 py-3 text-sm font-bold leading-6 capitalize duration-100 transform rounded-sm focus:ring-4 focus:ring-opacity-50 focus:outline-none hover:shadow-lg hover:-translate-y-1 ${className}`;
   const primaryClasses = 'bg-brand-blue border-2 border-brand-blue text-white shadow cursor-pointer focus:ring-green-500';
 
   const secondaryClasses = 'border-2 border-brand-blue text-brand-blue cursor-pointer focus:ring-green-500';

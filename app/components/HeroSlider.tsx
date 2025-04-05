@@ -149,7 +149,7 @@ export function HeroSlider() {
 
         <motion.p
           variants={fadeInUp}
-          className="mt-4 text-lg max-w-xl mx-auto font-sans"
+          className="mt-4 text-lg max-w-xl mx-auto  font-Opensans"
         >
           {/* Mint your 3 on Kingdomly via the link below. */}
           Mint your Bera Horses Stallions with our fren below

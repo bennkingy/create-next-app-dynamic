@@ -5,9 +5,20 @@ import {
   DynamicWidget, 
   useDynamicContext
 } from '@dynamic-labs/sdk-react-core';
-import { EthereumWalletConnectors } from '@dynamic-labs/ethereum';
 import TextHeading from '../components/Text';
 import Button from '@/app/components/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function VerifyPage() {
   const [challengeMessage, setChallengeMessage] = useState('');
@@ -47,18 +58,48 @@ interface VerifyPageContentProps {
   debugLog: (...args: unknown[]) => void;
 }
 
-// Add interfaces to help with type checking
-interface WalletWithSignMessage {
-  signMessage: (message: string) => Promise<string>;
-}
-
 interface WalletClientWithSignMessage {
   signMessage: (params: { message: string }) => Promise<string>;
 }
 
-interface WalletWithClient {
-  getWalletClient: () => Promise<WalletClientWithSignMessage>;
+// Extended wallet connector interfaces for better type checking
+interface EthersSigner {
+  signMessage: (message: string) => Promise<string>;
 }
+
+interface EthersConnector {
+  signer?: EthersSigner;
+}
+
+interface WagmiConnector {
+  signMessage: (params: { message: string }) => Promise<string>;
+}
+
+// Define provider interface
+interface EthereumProvider {
+  request: (args: {method: string; params: unknown[]}) => Promise<string>;
+}
+
+interface ExtendedWalletConnector {
+  signMessage?: (message: string) => Promise<string>;
+  ethers?: EthersConnector;
+  wagmi?: WagmiConnector;
+  provider?: EthereumProvider;
+}
+
+interface ExtendedWallet {
+  address: string;
+  signMessage?: (message: string) => Promise<string>;
+  getWalletClient?: () => Promise<WalletClientWithSignMessage>;
+  connector?: ExtendedWalletConnector;
+}
+
+// Form schema
+const formSchema = z.object({
+  challengeMessage: z.string().min(1, {
+    message: "Please paste the challenge message from Discord before signing.",
+  }),
+});
 
 function VerifyPageContent({ 
   challengeMessage, setChallengeMessage,
@@ -70,6 +111,21 @@ function VerifyPageContent({
   const { primaryWallet, handleLogOut } = useDynamicContext();
   const isConnected = !!primaryWallet;
   const walletAddress = primaryWallet?.address || '';
+  
+  // Form
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      challengeMessage: challengeMessage,
+    },
+  });
+
+  // Keep local state in sync with form
+  form.watch((values) => {
+    if (values.challengeMessage !== undefined) {
+      setChallengeMessage(values.challengeMessage);
+    }
+  });
 
   const handleSignMessage = async () => {
     if (!isConnected || !primaryWallet) {
@@ -77,7 +133,10 @@ function VerifyPageContent({
       return;
     }
 
-    const challenge = challengeMessage.trim();
+    const valid = await form.trigger();
+    if (!valid) return;
+
+    const challenge = form.getValues().challengeMessage.trim();
     if (!challenge) {
       alert("Please paste the challenge message from Discord before signing.");
       return;
@@ -87,17 +146,65 @@ function VerifyPageContent({
     try {
       setIsSigningMessage(true);
       
-      // Use the dynamic-context to sign the message with proper type checking
-      const wallet = primaryWallet as unknown;
+      // Cast the wallet to our extended type for better type checking
+      const extendedWallet = primaryWallet as unknown as ExtendedWallet;
       let sig: string;
       
-      if (typeof (wallet as WalletWithSignMessage).signMessage === 'function') {
-        sig = await (wallet as WalletWithSignMessage).signMessage(challenge);
-      } else if (typeof (wallet as WalletWithClient).getWalletClient === 'function') {
-        const walletClient = await (wallet as WalletWithClient).getWalletClient();
-        sig = await walletClient.signMessage({ message: challenge });
-      } else {
-        throw new Error("Wallet doesn't support message signing");
+      try {
+        // First attempt using the primaryWallet.signMessage method
+        if (typeof extendedWallet.signMessage === 'function') {
+          debugLog("Using primaryWallet.signMessage");
+          sig = await extendedWallet.signMessage(challenge);
+        } 
+        // Next try using the wallet connector directly
+        else if (extendedWallet.connector && typeof extendedWallet.connector.signMessage === 'function') {
+          debugLog("Using primaryWallet.connector.signMessage");
+          sig = await extendedWallet.connector.signMessage(challenge);
+        }
+        // Try getting a wallet client
+        else if (typeof extendedWallet.getWalletClient === 'function') {
+          debugLog("Using getWalletClient().signMessage");
+          const walletClient = await extendedWallet.getWalletClient();
+          sig = await walletClient.signMessage({ message: challenge });
+        }
+        // Access directly via connector's ethers signer
+        else if (extendedWallet.connector?.ethers?.signer && typeof extendedWallet.connector.ethers.signer.signMessage === 'function') {
+          debugLog("Using connector.ethers.signer.signMessage");
+          sig = await extendedWallet.connector.ethers.signer.signMessage(challenge);
+        }
+        // Use Dynamic's new standard message signing API
+        else if (extendedWallet.connector?.wagmi?.signMessage) {
+          debugLog("Using connector.wagmi.signMessage");
+          sig = await extendedWallet.connector.wagmi.signMessage({
+            message: challenge,
+          });
+        }
+        else {
+          throw new Error("Could not find a supported signing method");
+        }
+      } catch (signError) {
+        debugLog("Error in primary signing methods:", signError);
+        
+        // Last resort: try personal_sign with standard Ethereum methods
+        try {
+          debugLog("Attempting personal_sign as fallback");
+          // Using provider directly as fallback
+          const provider = extendedWallet.connector?.provider || (window as {ethereum?: EthereumProvider}).ethereum;
+          
+          if (provider && typeof provider.request === 'function') {
+            sig = await provider.request({
+              method: 'personal_sign',
+              params: [challenge, extendedWallet.address]
+            });
+          } else {
+            throw new Error("No provider available for personal_sign");
+          }
+        } catch (fallbackError: unknown) {
+          const errorMessage = fallbackError instanceof Error 
+            ? fallbackError.message 
+            : 'Unknown error during signing';
+          throw new Error(`All signing methods failed: ${errorMessage}`);
+        }
       }
 
       debugLog("Signature obtained:", sig);
@@ -120,12 +227,24 @@ function VerifyPageContent({
     }
   };
 
+  const copySignatureToClipboard = () => {
+    if (signature) {
+      navigator.clipboard.writeText(signature)
+        .then(() => {
+          alert('Signature copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+    }
+  };
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center font-openSans p-10">
+    <div className="flex flex-col items-center justify-center font-openSans m-5 my-12 mb-20">
       <div className="max-w-md w-full p-6 rounded-lg shadow-md">
         <TextHeading
               className="text-brand-orange max-w-2xl text-center mx-auto p-0 mb-10"
-              text="NFT Wallet Verification."
+              text="Discord Wallet Verification"
               style="text-heading-1"
               type="heading"
             />
@@ -140,16 +259,7 @@ function VerifyPageContent({
         {/* Dynamic's wallet connection widget */}
         <div className="mb-4">
           {isConnected ? (
-            <div className="flex flex-col gap-2">
-              <p className="text-center break-all">Connected Wallet: {walletAddress}</p>
-              <button 
-                onClick={handleLogOut}
-                type="button"
-                className="w-full p-2 rounded bg-[#f44336] hover:bg-[#d32f2f]"
-              >
-                Disconnect Wallet
-              </button>
-            </div>
+      null
           ) : (
             <div className="flex justify-center">
               <DynamicWidget variant="modal" />
@@ -157,31 +267,54 @@ function VerifyPageContent({
           )}
         </div>
         
-        <label htmlFor="challengeMessage" className="block mt-3 text-left">
-          Challenge Message (pasted from Discord):
-        </label>
-        <textarea 
-          id="challengeMessage" 
-          rows={4} 
-          placeholder="e.g. Verify Discord account 123456..."
-          className="w-full p-2 rounded my-2 text-black"
-          value={challengeMessage}
-          onChange={(e) => setChallengeMessage(e.target.value)}
-        />
+        <Form {...form}>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            handleSignMessage();
+          }} className="space-y-4">
 
-        <Button 
-          onClick={handleSignMessage}
-          type="primary"
-          disabled={isSigningMessage || !isConnected}
-          className={'w-full'}
-          label={isSigningMessage ? 'Signing...' : 'Sign Message'}
-        />
+{!signature && (
+            <FormField
+              control={form.control}
+              name="challengeMessage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Challenge Message (pasted from Discord):</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="e.g. Verify Discord account 123456..."
+                      rows={4}
+                      className="w-full text-black"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            )}
+
+            {!signature && (
+              <Button 
+                type="primary"
+                className="w-full"
+                disabled={isSigningMessage || !isConnected}
+                label={isSigningMessage ? 'Signing...' : 'Sign Message'}
+                buttonType="submit"
+              />
+            )}
+          </form>
+        </Form>
 
         {showSignature && (
-          <div className="mt-3 p-3 bg-[#222] rounded break-all">
-            <p>Signature:</p>
-            <p className="font-mono">{signature}</p>
-            <p className="mt-2 text-sm">Copy this entire string and paste it in Discord using: !signature &lt;YOUR_SIGNATURE&gt;</p>
+          <div className="">
+            <Button 
+              type="primary"
+              className="w-full mt-6"
+              onClick={copySignatureToClipboard}
+              label="Copy Signature"
+              buttonType="button"
+            />
           </div>
         )}
       </div>

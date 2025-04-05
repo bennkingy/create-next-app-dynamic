@@ -47,7 +47,7 @@ export const MobileMenuProvider = ({ children }: { children: ReactNode }) => {
   return (
     <MobileMenuContext.Provider value={{ isOpen, toggleMenu }}>
       <div className="relative">
-        <header className="relative top-0 right-0 z-40 flex items-center p-4 w-full justify-end -mb-[97px]">
+        <header className="relative top-0 right-0 z-40 flex items-baseline p-4 w-full justify-end -mb-[97px] h-[80px]">
           <div className="hidden lg:block h-[80px]">
             <ConnectWallet />
           </div>
