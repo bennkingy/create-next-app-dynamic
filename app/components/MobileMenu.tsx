@@ -6,7 +6,7 @@ import { mainNavigation } from "@/lib/consts";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ConnectWallet } from "./ConnectWallet";
+import { ConnectWallet } from "@/app/components/ConnectWallet";
 
 interface MobileMenuProps {
   isOpen: boolean;

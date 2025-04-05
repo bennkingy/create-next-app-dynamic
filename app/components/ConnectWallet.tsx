@@ -1,4 +1,4 @@
-import { DynamicWidget } from '../lib/dynamic'
+import { DynamicWidget } from '@/lib/dynamic'
 
 export const ConnectWallet = () => {
   return (

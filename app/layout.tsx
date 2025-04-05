@@ -6,7 +6,7 @@ import Menu from "./components/Menu";
 import { mainNavigation } from "@/lib/consts";
 import Image from "next/image";
 import { FraRecipient } from "@/components/FraRecipient";
-import { MobileMenuProvider } from "@/components/MobileMenuProvider";
+import { MobileMenuProvider } from "@/app/components/MobileMenuProvider";
 import {
 	DynamicContextProvider,
 	EthereumWalletConnectors,

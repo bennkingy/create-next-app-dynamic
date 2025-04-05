@@ -44,7 +44,7 @@ const Menu: React.FC<MenuProps> = ({
             rel={item.newTab ? "noopener noreferrer" : undefined}
           >
             <span
-              className={`inline-block text-gray-800 font-semibold capitalize ${pathname === item.href
+              className={`inline-block text-gray-800 font-semibold !font-openSans capitalize ${pathname === item.href
                 ? "text-gray-800 "
                 : "hover:text-gray-800 "
                 }`}
