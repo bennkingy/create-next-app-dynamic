@@ -32,7 +32,7 @@ export default function BrandingKitPage() {
           >
             <polygon points="0,0 100,0 0,50" className="fill-[#DAE8F0]" />
           </svg>
-          <div className="w-full h-[100px] -mb-[100px] relative bg-[#FFFFFF] [clip-path:polygon(100%_00%,0%_100%,100%_100%)]"></div>
+          <div className="w-full h-[100px] -mb-[100px] relative bg-[#FFFFFF] [clip-path:polygon(100%_00%,0%_100%,100%_100%)]"/>
         </div>
         <div className="absolute bottom-0 z-2 w-full h-[600px] mt-4 -mb-10 sm:mb-0">
           <Image
