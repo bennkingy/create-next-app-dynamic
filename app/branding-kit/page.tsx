@@ -168,6 +168,41 @@ export default function BrandingKitPage() {
           </div>
         </section>
 
+        {/* Trailers Section */}
+        <section className="mb-16">
+          <TextHeading text="Trailers" type="heading" style="text-heading-2" className="mb-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <TextHeading text="Trailer 1" type="heading" style="text-heading-4" className="mb-4" />
+              <video className="w-full rounded-lg" controls>
+                <source src="/homepage-video.mp4" type="video/mp4" />
+                <track kind="captions" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <TextHeading text="Trailer 2" type="heading" style="text-heading-4" className="mb-4" />
+              <video className="w-full rounded-lg" controls>
+                <source src="/homepage-video.mp4" type="video/mp4" />
+                <track kind="captions" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </section>
+
+        {/* Memes Section */}
+        <section className="mb-16">
+          <TextHeading text="Memes" type="heading" style="text-heading-2" className="mb-6" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <div key={i} className="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
+                <p className="text-gray-500">Meme {i}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Dividers Section */}
         <section className="mb-16">
           <TextHeading text="Dividers" type="heading" style="text-heading-2" className="mb-6" />
@@ -214,6 +249,7 @@ export default function BrandingKitPage() {
             </ul>
           </div>
         </section>
+
       </div>
     </div>
   )
