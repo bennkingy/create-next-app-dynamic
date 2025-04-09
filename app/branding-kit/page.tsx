@@ -50,7 +50,7 @@ export default function BrandingKitPage() {
       <div className="max-w-7xl mx-auto container pt-16">
         {/* Logo Usage Section */}
         <section className="mb-16">
-          <TextHeading text="Logo Usage" type="heading" style="text-heading-2" className="mb-6" />
+          <TextHeading text="Logo Usage" type="heading" style="text-heading-1" className="mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
