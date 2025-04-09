@@ -52,19 +52,21 @@ export default function BrandingKitPage() {
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">Typography</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Header Font</h3>
+              <h3 className="text-xl font-bold mb-4">Heading Font - Fredoka</h3>
               <div className="space-y-4">
-                <p className="text-4xl font-bold">Heading 1</p>
-                <p className="text-3xl font-bold">Heading 2</p>
-                <p className="text-2xl font-bold">Heading 3</p>
+                <p className="text-4xl font-bold font-fredoka">Heading 1</p>
+                <p className="text-3xl font-bold font-fredoka">Heading 2</p>
+                <p className="text-2xl font-bold font-fredoka">Heading 3</p>
+                <a href="https://fonts.google.com/specimen/Fredoka" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Download Fredoka from Google Fonts</a>
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Body Font</h3>
+              <h3 className="text-xl font-bold mb-4">Body Font - Open Sans</h3>
               <div className="space-y-4">
-                <p className="text-lg">Regular text for body content</p>
-                <p className="text-lg font-medium">Medium weight text</p>
-                <p className="text-lg font-light">Light weight text</p>
+                <p className="text-lg font-openSans">Regular text for body content</p>
+                <p className="text-lg font-medium font-openSans">Medium weight text</p>
+                <p className="text-lg font-light font-openSans">Light weight text</p>
+                <a href="https://fonts.google.com/specimen/Open+Sans" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Download Open Sans from Google Fonts</a>
               </div>
             </div>
           </div>
@@ -75,24 +77,24 @@ export default function BrandingKitPage() {
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">Color Palette</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="space-y-2">
-              <div className="h-24 bg-primary rounded-lg" />
-              <p className="text-sm font-medium">Primary</p>
-              <p className="text-sm text-gray-500">#000000</p>
+              <div className="h-24 bg-[#20343C] rounded-lg" />
+              <p className="text-sm font-medium">Brand Blue</p>
+              <p className="text-sm text-gray-500">#20343C</p>
             </div>
             <div className="space-y-2">
-              <div className="h-24 bg-secondary rounded-lg" />
-              <p className="text-sm font-medium">Secondary</p>
-              <p className="text-sm text-gray-500">#FFFFFF</p>
+              <div className="h-24 bg-[#F48C04] rounded-lg" />
+              <p className="text-sm font-medium">Brand Orange</p>
+              <p className="text-sm text-gray-500">#F48C04</p>
             </div>
             <div className="space-y-2">
-              <div className="h-24 bg-accent rounded-lg" />
-              <p className="text-sm font-medium">Accent</p>
-              <p className="text-sm text-gray-500">#FF0000</p>
+              <div className="h-24 bg-[#798B3E] rounded-lg" />
+              <p className="text-sm font-medium">Brand Green</p>
+              <p className="text-sm text-gray-500">#798B3E</p>
             </div>
             <div className="space-y-2">
-              <div className="h-24 bg-gray-900 rounded-lg" />
-              <p className="text-sm font-medium">Dark</p>
-              <p className="text-sm text-gray-500">#1F2937</p>
+              <div className="h-24 bg-[#2C3034] rounded-lg" />
+              <p className="text-sm font-medium">Text Color</p>
+              <p className="text-sm text-gray-500">#2C3034</p>
             </div>
           </div>
         </section>
