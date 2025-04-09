@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import TextHeading from '../components/Text'
 import Image from 'next/image'
 import Divider from '../components/Divider'
+import Button from '../components/Button'
 
 export const metadata: Metadata = {
   title: 'Branding Kit | Your Company Name',
@@ -49,24 +50,36 @@ export default function BrandingKitPage() {
       <div className="max-w-7xl mx-auto container pt-16">
         {/* Typography Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Typography</h2>
+          <TextHeading text="Typography" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Heading Font - Fredoka</h3>
+              <TextHeading text="Heading Font - Fredoka" type="heading" style="text-heading-4" className="mb-4" />
               <div className="space-y-4">
                 <p className="text-4xl font-bold font-fredoka">Heading 1</p>
                 <p className="text-3xl font-bold font-fredoka">Heading 2</p>
                 <p className="text-2xl font-bold font-fredoka">Heading 3</p>
-                <a href="https://fonts.google.com/specimen/Fredoka" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Download Fredoka from Google Fonts</a>
+                <Button
+                  type="primary"
+                  href="https://fonts.google.com/specimen/Fredoka"
+                  label="Download Fredoka"
+                  target="_blank"
+                  className="mt-4"
+                />
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Body Font - Open Sans</h3>
+              <TextHeading text="Body Font - Open Sans" type="heading" style="text-heading-4" className="mb-4" />
               <div className="space-y-4">
                 <p className="text-lg font-openSans">Regular text for body content</p>
                 <p className="text-lg font-medium font-openSans">Medium weight text</p>
                 <p className="text-lg font-light font-openSans">Light weight text</p>
-                <a href="https://fonts.google.com/specimen/Open+Sans" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Download Open Sans from Google Fonts</a>
+                <Button
+                  type="primary"
+                  href="https://fonts.google.com/specimen/Open+Sans"
+                  label="Download Open Sans"
+                  target="_blank"
+                  className="mt-4"
+                />
               </div>
             </div>
           </div>
@@ -74,7 +87,7 @@ export default function BrandingKitPage() {
 
         {/* Color Palette Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Color Palette</h2>
+          <TextHeading text="Color Palette" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="space-y-2">
               <div className="h-24 bg-[#20343C] rounded-lg" />
@@ -101,10 +114,10 @@ export default function BrandingKitPage() {
 
         {/* Logo Usage Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Logo Usage</h2>
+          <TextHeading text="Logo Usage" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Primary Logo</h3>
+              <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
               <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
                 <Image
                   src="/logo.png"
@@ -116,7 +129,7 @@ export default function BrandingKitPage() {
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Mobile Logo</h3>
+              <TextHeading text="Mobile Logo" type="heading" style="text-heading-4" className="mb-4" />
               <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
                 <Image
                   src="/mobile-logo.png"
@@ -132,17 +145,17 @@ export default function BrandingKitPage() {
 
         {/* Banner Images Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Banner Images</h2>
+          <TextHeading text="Banner Images" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-1 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Hero Banner</h3>
+              <TextHeading text="Hero Banner" type="heading" style="text-heading-4" className="mb-4" />
               <div className="h-48 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
                 {/* Replace with actual banner image */}
                 <p className="text-gray-500">Hero Banner Image</p>
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Social Media Banners</h3>
+              <TextHeading text="Social Media Banners" type="heading" style="text-heading-4" className="mb-4" />
               <div className="grid grid-cols-2 gap-4">
                 <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
                   <p className="text-gray-500">Facebook</p>
@@ -157,9 +170,9 @@ export default function BrandingKitPage() {
 
         {/* Brand Guidelines Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Brand Guidelines</h2>
+          <TextHeading text="Brand Guidelines" type="heading" style="text-heading-2" className="mb-6" />
           <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Usage Guidelines</h3>
+            <TextHeading text="Usage Guidelines" type="heading" style="text-heading-4" className="mb-4" />
             <ul className="list-disc list-inside space-y-2 text-gray-600">
               <li>Always maintain proper spacing around the logo</li>
               <li>Use the primary color for important calls-to-action</li>
@@ -172,30 +185,30 @@ export default function BrandingKitPage() {
 
         {/* Dividers Section */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Dividers</h2>
+          <TextHeading text="Dividers" type="heading" style="text-heading-2" className="mb-6" />
           <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">SVG Dividers</h3>
+            <TextHeading text="SVG Dividers" type="heading" style="text-heading-4" className="mb-4" />
             <div className="space-y-16">
               <div>
-                <p className="text-sm font-medium mb-2">Orange Divider</p>
+                <TextHeading text="Orange Divider" type="heading" style="text-heading-4" className="mb-2" />
                 <Divider color="orange" />
               </div>
               <div>
-                <p className="text-sm font-medium mb-2">Blue Divider</p>
+                <TextHeading text="Blue Divider" type="heading" style="text-heading-4" className="mb-2" />
                 <Divider color="blue" />
               </div>
               <div>
-                <p className="text-sm font-medium mb-2">White Divider</p>
+                <TextHeading text="White Divider" type="heading" style="text-heading-4" className="mb-2" />
                 <div className="p-4 rounded-lg">
                   <Divider color="white" />
                 </div>
               </div>
               <div>
-                <p className="text-sm font-medium mb-2">Green Divider</p>
+                <TextHeading text="Green Divider" type="heading" style="text-heading-4" className="mb-2" />
                 <Divider color="green" />
               </div>
               <div>
-                <p className="text-sm font-medium mb-2">Black Divider</p>
+                <TextHeading text="Black Divider" type="heading" style="text-heading-4" className="mb-2" />
                 <Divider color="black" />
               </div>
             </div>
