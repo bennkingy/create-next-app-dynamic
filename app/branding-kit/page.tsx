@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import TextHeading from '../components/Text'
 import Image from 'next/image'
+import Divider from '../components/Divider'
 
 export const metadata: Metadata = {
   title: 'Branding Kit | Your Company Name',
@@ -103,15 +104,25 @@ export default function BrandingKitPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Primary Logo</h3>
               <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
-                {/* Replace with actual logo */}
-                <p className="text-gray-500">Primary Logo</p>
+                <Image
+                  src="/logo.png"
+                  alt="Primary Logo"
+                  width={200}
+                  height={80}
+                  className="object-contain"
+                />
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-xl font-bold mb-4">Secondary Logo</h3>
+              <h3 className="text-xl font-bold mb-4">Mobile Logo</h3>
               <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
-                {/* Replace with actual logo */}
-                <p className="text-gray-500">Secondary Logo</p>
+                <Image
+                  src="/mobile-logo.png"
+                  alt="Mobile Logo"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -154,6 +165,38 @@ export default function BrandingKitPage() {
               <li>Ensure proper contrast ratios for accessibility</li>
               <li>Use high-resolution images for all brand assets</li>
             </ul>
+          </div>
+        </section>
+
+        {/* Dividers Section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Dividers</h2>
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <h3 className="text-xl font-bold mb-4">SVG Dividers</h3>
+            <div className="space-y-16">
+              <div>
+                <p className="text-sm font-medium mb-2">Orange Divider</p>
+                <Divider color="orange" />
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2">Blue Divider</p>
+                <Divider color="blue" />
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2">White Divider</p>
+                <div className="p-4 rounded-lg">
+                  <Divider color="white" />
+                </div>
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2">Green Divider</p>
+                <Divider color="green" />
+              </div>
+              <div>
+                <p className="text-sm font-medium mb-2">Black Divider</p>
+                <Divider color="black" />
+              </div>
+            </div>
           </div>
         </section>
       </div>
