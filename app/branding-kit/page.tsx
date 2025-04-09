@@ -70,9 +70,9 @@ export default function BrandingKitPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Body Font - Open Sans" type="heading" style="text-heading-4" className="mb-4" />
               <div className="space-y-4">
-                <p className="text-lg font-openSans">Regular text for body content</p>
-                <p className="text-lg font-medium font-openSans">Medium weight text</p>
-                <p className="text-lg font-light font-openSans">Light weight text</p>
+                <p className="text-lg font-openSans font-normal">Regular text for body content</p>
+                <p className="text-lg font-openSans font-semibold">Medium weight text</p>
+                <p className="text-lg font-openSans font-light">Light weight text</p>
                 <Button
                   type="primary"
                   href="https://fonts.google.com/specimen/Open+Sans"
