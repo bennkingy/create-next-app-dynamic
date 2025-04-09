@@ -48,6 +48,64 @@ export default function BrandingKitPage() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto container pt-16">
+        {/* Logo Usage Section */}
+        <section className="mb-16">
+          <TextHeading text="Logo Usage" type="heading" style="text-heading-2" className="mb-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
+              <div className="h-full bg-white flex items-center justify-center border border-gray-200 rounded-lg">
+                <Image
+                  src="/logo.png"
+                  alt="Primary Logo"
+                  width={200}
+                  height={80}
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <TextHeading text="Mobile Logo" type="heading" style="text-heading-4" className="mb-4" />
+              <div className="h-full bg-white flex items-center justify-center border border-gray-200 rounded-lg">
+                <Image
+                  src="/mobile-logo.png"
+                  alt="Mobile Logo"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Color Palette Section */}
+        <section className="mb-16">
+          <TextHeading text="Color Palette" type="heading" style="text-heading-2" className="mb-6" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="space-y-2">
+              <div className="h-24 bg-[#20343C] rounded-lg" />
+              <p className="text-sm font-medium">Brand Blue</p>
+              <p className="text-sm text-gray-500">#20343C</p>
+            </div>
+            <div className="space-y-2">
+              <div className="h-24 bg-[#F48C04] rounded-lg" />
+              <p className="text-sm font-medium">Brand Orange</p>
+              <p className="text-sm text-gray-500">#F48C04</p>
+            </div>
+            <div className="space-y-2">
+              <div className="h-24 bg-[#798B3E] rounded-lg" />
+              <p className="text-sm font-medium">Brand Green</p>
+              <p className="text-sm text-gray-500">#798B3E</p>
+            </div>
+            <div className="space-y-2">
+              <div className="h-24 bg-[#2C3034] rounded-lg" />
+              <p className="text-sm font-medium">Text Color</p>
+              <p className="text-sm text-gray-500">#2C3034</p>
+            </div>
+          </div>
+        </section>
+
         {/* Typography Section */}
         <section className="mb-16">
           <TextHeading text="Typography" type="heading" style="text-heading-2" className="mb-6" />
@@ -85,64 +143,6 @@ export default function BrandingKitPage() {
           </div>
         </section>
 
-        {/* Color Palette Section */}
-        <section className="mb-16">
-          <TextHeading text="Color Palette" type="heading" style="text-heading-2" className="mb-6" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="space-y-2">
-              <div className="h-24 bg-[#20343C] rounded-lg" />
-              <p className="text-sm font-medium">Brand Blue</p>
-              <p className="text-sm text-gray-500">#20343C</p>
-            </div>
-            <div className="space-y-2">
-              <div className="h-24 bg-[#F48C04] rounded-lg" />
-              <p className="text-sm font-medium">Brand Orange</p>
-              <p className="text-sm text-gray-500">#F48C04</p>
-            </div>
-            <div className="space-y-2">
-              <div className="h-24 bg-[#798B3E] rounded-lg" />
-              <p className="text-sm font-medium">Brand Green</p>
-              <p className="text-sm text-gray-500">#798B3E</p>
-            </div>
-            <div className="space-y-2">
-              <div className="h-24 bg-[#2C3034] rounded-lg" />
-              <p className="text-sm font-medium">Text Color</p>
-              <p className="text-sm text-gray-500">#2C3034</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Logo Usage Section */}
-        <section className="mb-16">
-          <TextHeading text="Logo Usage" type="heading" style="text-heading-2" className="mb-6" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
-              <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
-                <Image
-                  src="/logo.png"
-                  alt="Primary Logo"
-                  width={200}
-                  height={80}
-                  className="object-contain"
-                />
-              </div>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <TextHeading text="Mobile Logo" type="heading" style="text-heading-4" className="mb-4" />
-              <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
-                <Image
-                  src="/mobile-logo.png"
-                  alt="Mobile Logo"
-                  width={120}
-                  height={120}
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Banner Images Section */}
         <section className="mb-16">
           <TextHeading text="Banner Images" type="heading" style="text-heading-2" className="mb-6" />
@@ -165,21 +165,6 @@ export default function BrandingKitPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Brand Guidelines Section */}
-        <section className="mb-16">
-          <TextHeading text="Brand Guidelines" type="heading" style="text-heading-2" className="mb-6" />
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <TextHeading text="Usage Guidelines" type="heading" style="text-heading-4" className="mb-4" />
-            <ul className="list-disc list-inside space-y-2 text-gray-600">
-              <li>Always maintain proper spacing around the logo</li>
-              <li>Use the primary color for important calls-to-action</li>
-              <li>Maintain consistent typography hierarchy</li>
-              <li>Ensure proper contrast ratios for accessibility</li>
-              <li>Use high-resolution images for all brand assets</li>
-            </ul>
           </div>
         </section>
 
@@ -212,6 +197,21 @@ export default function BrandingKitPage() {
                 <Divider color="black" />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Brand Guidelines Section */}
+        <section className="mb-16">
+          <TextHeading text="Brand Guidelines" type="heading" style="text-heading-2" className="mb-6" />
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <TextHeading text="Usage Guidelines" type="heading" style="text-heading-4" className="mb-4" />
+            <ul className="list-disc list-inside space-y-2 text-gray-600">
+              <li>Always maintain proper spacing around the logo</li>
+              <li>Use the primary color for important calls-to-action</li>
+              <li>Maintain consistent typography hierarchy</li>
+              <li>Ensure proper contrast ratios for accessibility</li>
+              <li>Use high-resolution images for all brand assets</li>
+            </ul>
           </div>
         </section>
       </div>
