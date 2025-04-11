@@ -163,12 +163,18 @@ export default function BrandingKitPage() {
           <div className="grid grid-cols-1 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Hero Banner" type="heading" style="text-heading-4" className="mb-4" />
-              <div className="h-48 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
+              <div className="bg-white flex items-center justify-center border border-gray-200 rounded-lg">
                 {/* Replace with actual banner image */}
-                <p className="text-gray-500">Hero Banner Image</p>
+                <Image
+                  src="/marketing/3000x1000.png"
+                  alt="Hero Banner"
+                  width={3000}
+                  height={1000}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
+            {/* <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Social Media Banners" type="heading" style="text-heading-4" className="mb-4" />
               <div className="grid grid-cols-2 gap-4">
                 <div className="h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
@@ -178,7 +184,7 @@ export default function BrandingKitPage() {
                   <p className="text-gray-500">Twitter</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 
