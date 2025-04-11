@@ -30,7 +30,7 @@ export default function BrandingKitPage() {
        <div className="relative bg-[#DAE8F0] text-gray-800 py-24 z-2">
         <div className="relative text-gray-800 pb-24 px-6 z-10">
           <div className="relative container text-center">
-            <TextHeading text="Branding Kit" type="heading" style="text-heading-2" className="text-center" />
+            <TextHeading text="Branding Kit" type="heading" style="text-heading-1" className="text-center" />
             <p className="mt-4 text-lg max-w-xl mx-auto">
               Official brand assets and guidelines for partners
             </p>
@@ -64,7 +64,7 @@ export default function BrandingKitPage() {
       <div className="max-w-7xl mx-auto container pt-16">
         {/* Logo Usage Section */}
         <section className="mb-16">
-          <TextHeading text="Logo Usage" type="heading" style="text-heading-2" className="mb-6" />
+          <TextHeading text="Logos" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-4 md:p-6 rounded-lg w-full">
               <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
@@ -201,14 +201,14 @@ export default function BrandingKitPage() {
                 />
               </div>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
+            {/* <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Trailer 2" type="heading" style="text-heading-4" className="mb-4" />
               <video className="w-full rounded-lg" controls>
                 <source src="/homepage-video.mp4" type="video/mp4" />
                 <track kind="captions" />
                 Your browser does not support the video tag.
               </video>
-            </div>
+            </div> */}
           </div>
         </section>
 
