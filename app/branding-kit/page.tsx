@@ -3,6 +3,7 @@ import TextHeading from '../components/Text'
 import Image from 'next/image'
 import Divider from '../components/Divider'
 import Button from '../components/Button'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -69,7 +70,7 @@ export default function BrandingKitPage() {
               <TextHeading text="Primary Logo" type="heading" style="text-heading-4" className="mb-4" />
               <div className="w-full h-[300px] bg-white flex items-center justify-center border border-gray-200 rounded-lg p-4">
                 <Image
-                  src="/logo.png"
+                  src="/logos/logo-cropped.svg"
                   alt="Primary Logo"
                   width={200}
                   height={80}
@@ -81,7 +82,7 @@ export default function BrandingKitPage() {
               <TextHeading text="Mobile Logo" type="heading" style="text-heading-4" className="mb-4" />
               <div className="w-full h-[300px] bg-white flex items-center justify-center border border-gray-200 rounded-lg p-4">
                 <Image
-                  src="/mobile-logo.png"
+                  src="/logos/logo-mob-cropped.svg"
                   alt="Mobile Logo"
                   width={120}
                   height={120}
@@ -187,11 +188,12 @@ export default function BrandingKitPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Trailer 1" type="heading" style="text-heading-4" className="mb-4" />
-              <video className="w-full rounded-lg" controls>
-                <source src="/homepage-video.mp4" type="video/mp4" />
-                <track kind="captions" />
-                Your browser does not support the video tag.
-              </video>
+              <div className="relative w-full h-0 pb-[56.25%]"> {/* Aspect ratio container */} 
+                <YouTubeEmbed 
+                  videoId="KDO-ZKNcqj8" 
+                  baseSrc="https://www.youtube.com/embed/KDO-ZKNcqj8?autoplay=1&mute=1&controls=0&loop=1&playlist=KDO-ZKNcqj8&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&disablekb=1"
+                />
+              </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <TextHeading text="Trailer 2" type="heading" style="text-heading-4" className="mb-4" />
@@ -230,7 +232,6 @@ export default function BrandingKitPage() {
         <section className="mb-16">
           <TextHeading text="Dividers" type="heading" style="text-heading-2" className="mb-6" />
           <div className="bg-gray-50 p-6 rounded-lg">
-            <TextHeading text="SVG Dividers" type="heading" style="text-heading-4" className="mb-4" />
             <div className="space-y-16">
               <div>
                 <TextHeading text="Orange Divider" type="heading" style="text-heading-4" className="mb-2" />
@@ -259,7 +260,7 @@ export default function BrandingKitPage() {
         </section>
 
         {/* Brand Guidelines Section */}
-        <section className="mb-16">
+        {/* <section className="mb-16">
           <TextHeading text="Brand Guidelines" type="heading" style="text-heading-2" className="mb-6" />
           <div className="bg-gray-50 p-6 rounded-lg">
             <TextHeading text="Usage Guidelines" type="heading" style="text-heading-4" className="mb-4" />
@@ -271,7 +272,7 @@ export default function BrandingKitPage() {
               <li>Use high-resolution images for all brand assets</li>
             </ul>
           </div>
-        </section>
+        </section> */}
 
       </div>
     </div>
