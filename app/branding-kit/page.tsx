@@ -3,6 +3,8 @@ import TextHeading from '../components/Text'
 import Image from 'next/image'
 import Divider from '../components/Divider'
 import Button from '../components/Button'
+import fs from 'node:fs'
+import path from 'node:path'
 
 export const metadata: Metadata = {
   title: 'Branding Kit | Your Company Name',
@@ -10,6 +12,17 @@ export const metadata: Metadata = {
 }
 
 export default function BrandingKitPage() {
+  // Read meme image filenames from the public/memes directory
+  const memesDirectory = path.join(process.cwd(), 'public', 'memes')
+  let memeFiles: string[] = []
+  try {
+    memeFiles = fs.readdirSync(memesDirectory)
+      .filter(file => /\.(png|jpg|jpeg)$/i.test(file)) // Filter for image files
+  } catch (error) {
+    console.error('Error reading memes directory:', error)
+    // Handle the error gracefully, e.g., display a message or empty section
+  }
+
   return (
     <div className="min-h-screen overflow-hidden mt-5">
           {/* Top Section */}
@@ -195,11 +208,21 @@ export default function BrandingKitPage() {
         <section className="mb-16">
           <TextHeading text="Memes" type="heading" style="text-heading-2" className="mb-6" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500">Meme {i}</p>
-              </div>
-            ))}
+            {memeFiles.length > 0 ? (
+              memeFiles.map((fileName) => (
+                <div key={fileName} className="bg-gray-50 p-4 rounded-lg flex items-center justify-center border border-gray-200">
+                  <Image
+                    src={`/memes/${fileName}`}
+                    alt={`Meme - ${fileName}`}
+                    width={200}
+                    height={200}
+                    className="object-contain rounded-lg"
+                  />
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500 col-span-full text-center">No memes found in the directory.</p>
+            )}
           </div>
         </section>
 
