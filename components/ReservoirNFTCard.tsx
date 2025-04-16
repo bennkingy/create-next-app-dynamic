@@ -30,11 +30,11 @@ const ReservoirNFTCard: React.FC<NFTCardProps> = ({ nft }) => {
       <div className="p-4">
         <h3 className="font-bold text-lg truncate font-fredoka text-brand-blue">{token.name || `Token #${token.tokenId}`}</h3>
         
-        <div className="mt-2 text-sm text-gray-500">
-          <p className="truncate">Collection: {token.collection.name}</p>
-          <p className="mt-1">{`Token ID: ${token.tokenId}`}</p>
+        <div className="mt-2 text-sm text-gray-500 font-openSans">
+          <p className="truncate"><span className="font-semibold">Collection:</span> {token.collection.name}</p>
+          <p className="mt-1"><span className="font-semibold">Token ID:</span> {token.tokenId}</p>
           {token.rarityRank && (
-            <p className="mt-1">{`Rarity Rank: ${token.rarityRank}`}</p>
+            <p className="mt-1"><span className="font-semibold">Rarity Rank:</span> {token.rarityRank}</p>
           )}
         </div>
 

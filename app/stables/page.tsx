@@ -216,7 +216,7 @@ export default function Stables() {
                     style="text-heading-2" 
                     className="text-brand-blue"
                   />
-                  <p className="text-lg text-gray-600 font-openSans mt-2">{collection.description}</p>
+                  <p className="text-lg text-gray-600 font-openSans mt-2">{collection.description}.</p>
                   <p className="text-md text-gray-500 mt-1 font-openSans">Network: {chainInfo?.name}</p>
                 </div>
               );
