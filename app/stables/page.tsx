@@ -7,6 +7,7 @@ import { useDynamicContext } from '@/lib/dynamic';
 import ReservoirNFTCard from '@/components/ReservoirNFTCard';
 import TextHeading from '../../app/components/Text';
 import Divider from '../../app/components/Divider';
+import Image from 'next/image';
 
 export default function Stables() {
   const { primaryWallet } = useDynamicContext();
@@ -99,54 +100,74 @@ export default function Stables() {
   );
 
   return (
-    <div>
-      <div className="relative bg-[#DAE8F0] text-gray-800 py-12 mt-4">
-        <div className="container mx-auto px-4">
-          <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
-            <TextHeading 
-              text="Your NFT Collections" 
-              type="heading" 
-              style="text-heading-2" 
-              className="text-brand-blue"
-            />
-            {totalNFTs > 0 && (
+    <div className="min-h-screen overflow-hidden mt-5">          {/* Top Section */}
+    <div className="relative bg-[#DAE8F0] text-gray-800 py-24 z-2">
+     <div className="relative text-gray-800 pb-24 px-6 z-10">
+       <div className="relative container text-center">
+         <TextHeading text="Stables" type="heading" style="text-heading-1" className="text-center" />
+         <p className="mt-4 text-lg max-w-xl mx-auto">
+          View your holdings in the Stables.
+         </p>
+       </div>
+     </div>
+
+     {/* {totalNFTs > 0 && (
               <div className="mt-4 md:mt-0 bg-gray-100 rounded-lg p-3">
                 <p className="font-openSans font-medium">
                   Portfolio Value: <span className="font-bold">{portfolioValue.total.toFixed(4)} {portfolioValue.currency}</span>
                 </p>
                 <p className="text-xs text-gray-500 font-openSans">{totalNFTs} NFTs in collection</p>
               </div>
-            )}
-          </div>
+            )} */}
 
+     {/* Leaderboard and Create Code Section */}
+     <div className="relative">
+       {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
+       <svg
+         className="absolute top-0 left-0 w-full h-12"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 100 50"
+         preserveAspectRatio="none"
+       >
+         <polygon points="0,0 100,0 0,50" className="fill-[#DAE8F0]" />
+       </svg>
+       <div className="w-full h-[100px] -mb-[100px] relative bg-[#FFFFFF] [clip-path:polygon(100%_00%,0%_100%,100%_100%)]"/>
+     </div>
+     <div className="absolute bottom-0 z-2 w-full h-[600px] mt-4 -mb-10 sm:mb-0">
+       <Image
+         src="/right.png"
+         alt="Hero banner"
+         fill
+         className="object-cover"
+         quality={100}
+         priority
+       />
+     </div>
+   </div>
+      <div className="relative text-gray-800 pt-12 mt-4">
+        <div className="container mx-auto px-4">
           {!address ? (
             <div className="text-center py-12">
               <TextHeading 
-                text="Connect your wallet to view your NFTs" 
+                text="Connect your wallet to enter the Stables" 
                 type="heading" 
                 style="text-heading-2" 
                 className="mb-4"
               />
-              <p className="text-gray-500 font-openSans">You&apos;ll need to connect your wallet to see your NFT collections.</p>
             </div>
-          ) : isLoading ? (
-            <div className="text-center py-12">
-              <p className="text-xl font-openSans">{loadingMessage}</p>
-            </div>
-          ) : totalNFTs === 0 ? (
+          ): totalNFTs === 0 ? (
             <div className="text-center py-12">
               <TextHeading 
-                text="No NFTs Found" 
+                text="Nothing found :(" 
                 type="heading" 
                 style="text-heading-2" 
                 className="mb-4"
               />
-              <p className="text-gray-500 font-openSans">You don&apos;t seem to own any NFTs from our supported collections.</p>
             </div>
           ) : (
             <>
               {/* Collection Tabs */}
-              <div className="border-b border-gray-200 mb-6">
+              <div className="">
                 <nav className="-mb-px flex space-x-8">
                   {Object.entries(userNFTs).map(([collectionKey, response]) => {
                     if (response.tokens.length === 0) return null;
@@ -160,7 +181,7 @@ export default function Stables() {
                         type="button"
                         onClick={() => setActiveCollection(collectionKey)}
                         className={`
-                          py-4 px-1 border-b-2 text-md font-bold font-openSans uppercase 
+                          py-4 px-1 border-b-2 text-md font-semibold font-fredoka uppercase 
                           ${activeCollection === collectionKey
                             ? 'border-brand-orange text-brand-orange'
                             : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
@@ -177,7 +198,7 @@ export default function Stables() {
         </div>
       </div>
       
-      <div className="container mx-auto px-4 py-12 mt-8">
+      <div className="container mx-auto px-4 pb-12 mt-4">
         {/* Active Collection NFTs */}
         {activeCollection && userNFTs[activeCollection]?.tokens.length > 0 ? (
           <div>
@@ -188,7 +209,7 @@ export default function Stables() {
 
               const chainInfo = CHAIN_INFO[collection.chainId as keyof typeof CHAIN_INFO];
               return (
-                <div className="mb-6 pb-4 border-b border-gray-100">
+                <div className="mb-6 pb-6 border-b border-gray-100">
                   <TextHeading 
                     text={collection.name} 
                     type="heading" 
