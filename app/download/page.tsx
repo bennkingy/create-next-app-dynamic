@@ -158,33 +158,34 @@ export default function DownloadPage() {
                 className="mb-6 text-brand-blue"
               />
               
-              <p className="text-lg text-gray-600 font-openSans mb-8">
+              <p className="text-lg text-gray-600 font-openSans mb-8 max-w-2xl">
                 Our game offers an immersive experience with stunning graphics and engaging gameplay.
-                Download now to join thousands of players already enjoying the adventure!
               </p>
               
-              <div className="bg-gray-100 rounded-lg p-6 mb-8">
+              <div className="bg-gray-100 rounded-lg p-6 mb-8 mx-auto w-fit">
                 <p className="font-openSans font-medium mb-4">System Requirements:</p>
                 <ul className="text-left text-gray-600 font-openSans space-y-2">
-                  <li>• Windows 10 64-bit</li>
-                  <li>• Intel Core i5 or equivalent</li>
+                  <li>• Windows 11</li>
+                  <li>• Intel Core i7 or equivalent</li>
                   <li>• 8GB RAM</li>
-                  <li>• 15GB available storage</li>
-                  <li>• DirectX 11 compatible graphics card</li>
+                  <li>• 2060 Super GPU or equivalent</li>
+                  <li>• 2GB available storage</li>
                 </ul>
               </div>
               
-              <Button 
-                label={isDownloading ? 'Starting Download...' : 'DOWNLOAD GAME'}
-                type="primary"
-                buttonType="button"
-                disabled={isDownloading}
-                onClick={handleDownload}
-                className="px-8 py-4 text-xl"
-              />
+              <div className="mx-auto w-fit">
+                <Button 
+                  label={isDownloading ? 'Starting Download...' : 'Download'}
+                  type="primary"
+                  buttonType="button"
+                  disabled={isDownloading}
+                  onClick={handleDownload}
+                  className="px-8 py-4 text-xl"
+                />
+              </div>
               
               <p className="mt-4 text-sm text-gray-500">
-                Version 1.0.2 | Last Updated: June 15, 2023 | 14.2 GB
+                Version 1.0.2 | Last Updated: April 19, 2025 | 2.2 GB
               </p>
             </>
           )}
