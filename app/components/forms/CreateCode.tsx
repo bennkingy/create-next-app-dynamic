@@ -151,7 +151,7 @@ export function CreateCode() {
           )}
         />
 
-        <Button buttonType="submit" label="GENERATE CODE" className="w-[200px] mx-auto" />
+        {!generatedCode && <Button buttonType="submit" label="GENERATE CODE" className="w-[200px] mx-auto" />}
 
         {generatedCode && (
           <div className="text-center mt-36 block">
