@@ -110,19 +110,30 @@ export function Leaderboard() {
         const ETH_USD_RATE = 1000 // update to whatever you want; 2000 => $20 per 0.01 ETH
         const maxCommissionPerReferral = 0.005 * ETH_USD_RATE // => 20 USD per usage
 
-        let processedData = mainData.map((item: { username: string; referral: string }) => {
+        // Create a map to store unique entries by referral code
+        const uniqueEntriesMap = new Map()
+
+        for (const item of mainData) {
           const referrals = usageCountByCode[item.referral] ?? 0
           const maxCommission = referrals * maxCommissionPerReferral
-          return {
-            no: 0, // will assign after sorting
-            name: item.username,
-            code: String(item.referral),
-            referrals,
-            maxCommission,
+          
+          // Only store the entry if it has referrals and isn't already stored
+          // or if it has more referrals than the existing entry
+          if (referrals > 0 && 
+              (!uniqueEntriesMap.has(item.referral) || 
+               uniqueEntriesMap.get(item.referral).referrals < referrals)) {
+            uniqueEntriesMap.set(item.referral, {
+              no: 0, // will assign after sorting
+              name: item.username,
+              code: String(item.referral),
+              referrals,
+              maxCommission,
+            })
           }
-        })
+        }
 
-        processedData = processedData.filter((item: LeaderboardEntry) => item.referrals > 0)
+        // Convert map values to array
+        let processedData = Array.from(uniqueEntriesMap.values())
 
         // 5. Sort by maxCommission descending, then assign rank
         processedData.sort((a: { maxCommission: number }, b: { maxCommission: number }) => b.maxCommission - a.maxCommission)

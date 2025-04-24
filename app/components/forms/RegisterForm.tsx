@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useState, useEffect } from "react"
+import { useState, useCallback } from "react"
 
 import {
   Form,
@@ -33,6 +33,7 @@ type FormValues = z.infer<typeof formSchema>;
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isDebouncing, setIsDebouncing] = useState(false);
 
   // Check localStorage on component mount
   // useEffect(() => {
@@ -51,7 +52,22 @@ export function RegisterForm() {
     },
   });
 
+  // Debounced submit handler
+  const debouncedSubmit = useCallback(async (values: FormValues) => {
+    if (isDebouncing) return;
+    
+    setIsDebouncing(true);
+    await onSubmit(values);
+    // Wait for 1 second before allowing another submission
+    setTimeout(() => {
+      setIsDebouncing(false);
+    }, 1000);
+  }, [isDebouncing]);
+
   async function onSubmit(values: FormValues) {
+    // Prevent multiple submissions while processing
+    if (isLoading) return;
+
     // Check if user has already signed up
     if (localStorage.getItem('berahorses_whitelist_signup') === 'true') {
       // Skip API call but show success message
@@ -97,7 +113,7 @@ export function RegisterForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(debouncedSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="username"
@@ -150,7 +166,7 @@ export function RegisterForm() {
           buttonType="submit"
           label={isLoading ? "Submitting..." : "SUBMIT"}
           className="w-[200px] mx-auto"
-          disabled={isLoading}
+          disabled={isLoading || form.formState.isSubmitting || isDebouncing}
         />}
         {submitted && (
           <p className="text-white text-center mt-4 font-openSans font-semibold">
