@@ -54,7 +54,7 @@ const NoticeBar = () => {
             type="primary"
             disabled
             target="_blank"
-            href="https://drive.google.com/file/d/13uHIUL-cty9mzmy6-KhDyMF486e18QST"
+            href="#"
             label="Download"
             className="max-w-[200px] max-h-[40px] hidden md:flex"
           />
@@ -62,7 +62,7 @@ const NoticeBar = () => {
             type="primary"
             disabled
             target="_blank"
-            href="https://drive.google.com/file/d/13uHIUL-cty9mzmy6-KhDyMF486e18QST"
+            href="#"
             label="Download Game"
             className="max-w-[200px] max-h-[40px] md:hidden flex"
           />

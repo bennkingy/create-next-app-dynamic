@@ -136,7 +136,7 @@ export default function Home() {
               type="primary"
               disabled
               target="_blank"
-              href="https://drive.google.com/file/d/13uHIUL-cty9mzmy6-KhDyMF486e18QST"
+              href="#"
               label="Download Game"
               className="sm:mb-0 sm:min-w-[200px]" />
           </motion.div>
