@@ -108,7 +108,7 @@ export function Leaderboard() {
         //    We'll compute "referrals" (the count of usage) and "maxCommission"
         //    then store them into a new array of type LeaderboardEntry
         const ETH_USD_RATE = 1000 // update to whatever you want; 2000 => $20 per 0.01 ETH
-        const maxCommissionPerReferral = 0.005 * ETH_USD_RATE // => 20 USD per usage
+        const maxCommissionPerReferral = 0.0025 * ETH_USD_RATE // => 20 USD per usage
 
         // Create a map to store unique entries by referral code
         const uniqueEntriesMap = new Map()
