@@ -35,12 +35,12 @@ export function RegisterForm() {
   const [submitted, setSubmitted] = useState(false);
 
   // Check localStorage on component mount
-  useEffect(() => {
-    const hasSignedUp = localStorage.getItem('berahorses_whitelist_signup');
-    if (hasSignedUp === 'true') {
-      setSubmitted(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const hasSignedUp = localStorage.getItem('berahorses_whitelist_signup');
+  //   if (hasSignedUp === 'true') {
+  //     setSubmitted(true);
+  //   }
+  // }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -52,8 +52,6 @@ export function RegisterForm() {
   });
 
   async function onSubmit(values: FormValues) {
-    console.log("Form Submitted:", values);
-
     // Check if user has already signed up
     if (localStorage.getItem('berahorses_whitelist_signup') === 'true') {
       // Skip API call but show success message
