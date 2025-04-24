@@ -44,11 +44,11 @@ export default function RootLayout({
 					}}
 				>
           <div className="bg-brand-blue text-white p-2 text-center font-openSans text-[14px] font-light block md:hidden">
-            <strong className="uppercase font-bold"> Alpha demo live</strong> - Earn $BERA
+            <strong className="uppercase font-bold"> Alpha demo thoon</strong> - Earn $BERA
             <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"/>
           </div>
           <div className="bg-brand-blue text-white p-2 text-center font-openSans text-[14px] font-light hidden md:block">
-            <strong className="uppercase font-bold">Alpha demo live</strong> - Download for PC and earn $BERA
+            <strong className="uppercase font-bold">Alpha demo thoon</strong> - Download for PC and earn $BERA
             <span className="inline-block w-2 h-2 ml-1 bg-green-500 rounded-full animate-pulse"/>
           </div>
           <MobileMenuProvider>

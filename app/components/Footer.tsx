@@ -24,10 +24,10 @@ export function Footer() {
               <h3 className="font-bold text-lg mb-4 font-openSans">Links</h3>
               <div className="flex flex-col gap-4 text-sm">
                 <Popover position="right" message="coming thoon">
-                  <Link href="#" onClick={(e) => e.preventDefault()} className="hover:text-primary">Branding Kit</Link>
+                  <Link href="" onClick={(e) => e.preventDefault()} className="hover:text-primary">Branding Kit</Link>
                 </Popover>
                 <Popover position="right" message="coming thoon">
-                  <Link href="#" onClick={(e) => e.preventDefault()} className="hover:text-primary">Report a bug</Link>
+                  <Link href="" onClick={(e) => e.preventDefault()} className="hover:text-primary">Report a bug</Link>
                 </Popover>
               </div>
             </div>

@@ -180,7 +180,7 @@ export function HeroSlider() {
             <Button
               type="primary"
               href="https://www.kingdomly.app/"
-              label="mint now"
+              label="mint thoon"
               className="sm:mb-0 sm:w-auto min-w-[110px] sm:min-w-[200px]"
             />
           </motion.div>

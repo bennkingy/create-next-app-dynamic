@@ -136,8 +136,8 @@ export default function Home() {
               type="primary"
               disabled
               target="_blank"
-              href="#"
-              label="Download Game"
+              href=""
+              label="Download Thoon"
               className="sm:mb-0 sm:min-w-[200px]" />
           </motion.div>
         </div>

@@ -54,16 +54,16 @@ const NoticeBar = () => {
             type="primary"
             disabled
             target="_blank"
-            href="#"
-            label="Download"
+            href=""
+            label="Download Thoon"
             className="max-w-[200px] max-h-[40px] hidden md:flex"
           />
           <Button
             type="primary"
             disabled
             target="_blank"
-            href="#"
-            label="Download Game"
+            href=""
+            label="Download Thoon"
             className="max-w-[200px] max-h-[40px] md:hidden flex"
           />
           {/* </Popover> */}

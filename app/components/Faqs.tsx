@@ -19,7 +19,7 @@ export function Faqs() {
         <AccordionContent>
           Please download the Alpha game from this website only, and run the .exe file. Create or import a wallet and start earning $BERA rewards for winning races.
           <br /><br />
-          <a href="#" target="_blank" rel="noopener" className="text-brand-orange font-openSans font-bold">
+          <a href="" target="_blank" rel="noopener" className="text-brand-orange font-openSans font-bold">
             Download game
           </a>
         </AccordionContent>
