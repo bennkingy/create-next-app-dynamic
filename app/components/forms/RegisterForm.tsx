@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useState, useEffect } from "react"
-import { useDynamicContext } from "../../../lib/dynamic"
 
 import {
   Form,
@@ -25,7 +24,7 @@ const formSchema = z.object({
   }),
   wallet: z
     .string()
-    .regex(/^0x[a-fA-F0-9]{40}$/, "Please enter a valid Berachain wallet address."),
+    .regex(/^0x[a-fA-F0-9]{40}$/, "Please enter a valid Ethereum wallet address."),
   referralCode: z.string().optional(),
 })
 
@@ -34,7 +33,14 @@ type FormValues = z.infer<typeof formSchema>;
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const { primaryWallet } = useDynamicContext();
+
+  // Check localStorage on component mount
+  useEffect(() => {
+    const hasSignedUp = localStorage.getItem('berahorses_whitelist_signup');
+    if (hasSignedUp === 'true') {
+      setSubmitted(true);
+    }
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -45,15 +51,19 @@ export function RegisterForm() {
     },
   });
 
-  // Effect to autofill wallet address when a wallet is connected
-  useEffect(() => {
-    if (primaryWallet?.address) {
-      form.setValue('wallet', primaryWallet.address);
-    }
-  }, [primaryWallet, form]);
-
   async function onSubmit(values: FormValues) {
     console.log("Form Submitted:", values);
+
+    // Check if user has already signed up
+    if (localStorage.getItem('berahorses_whitelist_signup') === 'true') {
+      // Skip API call but show success message
+      setIsLoading(true);
+      // Simulate loading for 1.5 seconds
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setSubmitted(true);
+      setIsLoading(false);
+      return;
+    }
 
     const formData = {
       username: values.username,
@@ -74,6 +84,8 @@ export function RegisterForm() {
 
       if (response.ok) {
         setSubmitted(true);
+        // Store signup status in localStorage
+        localStorage.setItem('berahorses_whitelist_signup', 'true');
         console.log('Form submitted successfully!');
       } else {
         console.error('Form submission failed');
@@ -111,10 +123,10 @@ export function RegisterForm() {
             <FormItem>
               <FormLabel className="text-white">Wallet Address</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your Berachain wallet address" {...field} className="bg-white" />
+                <Input placeholder="Enter your Ethereum wallet address" {...field} className="bg-white" />
               </FormControl>
               <FormDescription className="text-white">
-                Enter a valid Berachain wallet address (starting with 0x).
+                Enter a valid Ethereum wallet address (starting with 0x).
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -136,12 +148,12 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button
+        {!submitted && <Button
           buttonType="submit"
           label={isLoading ? "Submitting..." : "SUBMIT"}
           className="w-[200px] mx-auto"
           disabled={isLoading}
-        />
+        />}
         {submitted && (
           <p className="text-white text-center mt-4 font-openSans font-semibold">
             You have been added to whitelist successfully!

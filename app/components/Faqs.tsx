@@ -43,7 +43,8 @@ export function Faqs() {
         <AccordionContent>
           $HAY will be available on Berachain mainnet thoon. We will use the native token on Hychain.
         </AccordionContent>
-      </AccordionItem>      <AccordionItem value="item-4">
+      </AccordionItem>
+      <AccordionItem value="item-5">
         <AccordionTrigger>RFA Allocation</AccordionTrigger>
         <AccordionContent>
           Berachain has granted roughly 45k $BERA tokens. 15% has already been distributed to testnet users, and a further 70% is allocated to our community via ongoing rewards. These rewards will be distributed through playing our game, community engagement and marketing.
