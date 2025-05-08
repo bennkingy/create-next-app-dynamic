@@ -186,7 +186,7 @@ export default function DownloadPage() {
               </div>
               
               <p className="mt-4 text-sm text-gray-500">
-                Version 1.0.2 | Last Updated: April 19, 2025 | 2.2 GB
+                Version 1.0.2 | Last Updated: April 19, 2025 | 1.8 GB
               </p>
             </>
           )}
