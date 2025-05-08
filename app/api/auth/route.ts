@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 // In a real application, this would be stored in a secure environment variable
 // or a database with proper hashing, not in the code
-const CORRECT_PASSWORD = 'BeraNeigh25!!';
+const CORRECT_PASSWORD = '!BERADOWNLOAD2025!';
 
 export async function POST(request: Request) {
   try {
