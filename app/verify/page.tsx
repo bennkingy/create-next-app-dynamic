@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   DynamicWidget, 
   useDynamicContext
@@ -30,6 +30,17 @@ export default function VerifyPage() {
   const debugLog = (...args: unknown[]) => {
     console.log("[DEBUG]", ...args);
   };
+
+  // Extract message from URL on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const message = urlParams.get('message');
+      if (message) {
+        setChallengeMessage(decodeURIComponent(message));
+      }
+    }
+  }, []);
 
   return (
       <VerifyPageContent 
@@ -119,6 +130,13 @@ function VerifyPageContent({
       challengeMessage: challengeMessage,
     },
   });
+
+  // Effect to update form when challengeMessage prop changes
+  useEffect(() => {
+    if (challengeMessage) {
+      form.setValue('challengeMessage', challengeMessage, { shouldValidate: true });
+    }
+  }, [challengeMessage, form]);
 
   // Keep local state in sync with form
   form.watch((values) => {
@@ -278,12 +296,12 @@ function VerifyPageContent({
               name="challengeMessage"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Challenge Message (pasted from Discord):</FormLabel>
+                  <FormLabel>Challenge Message:</FormLabel>
                   <FormControl>
                     <Textarea 
-                      placeholder="e.g. Verify Discord account 123456..."
+                      readOnly
                       rows={4}
-                      className="w-full text-black"
+                      className="w-full text-black bg-gray-100"
                       {...field}
                     />
                   </FormControl>
