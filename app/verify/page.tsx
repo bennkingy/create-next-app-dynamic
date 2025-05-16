@@ -251,7 +251,6 @@ function VerifyPageContent({
         <ol className="list-decimal pl-6 mb-4 text-left">
           <li>In Discord, run <code>!verify chain wallet</code>. Copy the challenge message.</li>
           <li>Connect your wallet using the button below.</li>
-          <li>Paste the challenge into the box below.</li>
           <li>Click <strong>Sign Message</strong> and approve in your wallet.</li>
           <li>Copy the signature (shown below) and go back to Discord to type <code>!signature &lt;signature&gt;</code>.</li>
         </ol>
