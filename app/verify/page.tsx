@@ -234,8 +234,6 @@ function VerifyPageContent({
       setSignature(sig);
       setShowSignature(true);
 
-      // Also show an alert so the user definitely sees it
-      alert(`Signature:\n${sig}\n\nCopy it and go to Discord to type !signature <YOUR_SIGNATURE>`);
     } catch (err: unknown) {
       console.error("[DEBUG] Error signing message:", err);
       const errorMessage = err instanceof Error ? err.message : String(err);
@@ -249,7 +247,7 @@ function VerifyPageContent({
     if (signature) {
       navigator.clipboard.writeText(signature)
         .then(() => {
-          alert('Signature copied to clipboard!');
+          // alert('Signature copied to clipboard!');
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
