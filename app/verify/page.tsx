@@ -247,7 +247,7 @@ function VerifyPageContent({
     if (signature) {
       navigator.clipboard.writeText(signature)
         .then(() => {
-          // alert('Signature copied to clipboard!');
+          alert('Signature copied to clipboard!');
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
