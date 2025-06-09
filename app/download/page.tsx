@@ -68,7 +68,7 @@ export default function DownloadPage() {
     setTimeout(() => {
       // Download logic would go here
       // For example: window.location.href = '/game-files/your-game-installer.exe';
-      window.location.href = 'https://drive.usercontent.google.com/download?id=1x50OeZVA9XogKcW1UXhmYT-cWqG3HioN&export=download';
+      window.location.href = 'https://drive.usercontent.google.com/download?id=1aKKJx-rvhauXnBfGrbLhjYy2473PWSh9&export=download&authuser=0';
       setIsDownloading(false);
     }, 2000);
   };
